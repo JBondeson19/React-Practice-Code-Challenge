@@ -1,23 +1,27 @@
 import React, { Fragment } from 'react'
 
 const Sushi = (props) => {
+ 
+
   return (
     <div className="sushi">
-      <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
+      <div className="plate">
         { 
-          /* Tell me if this sushi has been eaten! */ 
-          false ?
+          props.eatenSushi.find((eaten) => eaten.id === props.sushi.id) ?
             null
           :
-            <img src={/* Give me an image source! */ } width="100%" />
+            <img src={props.sushi.img_url} width="100%" onClick={() => props.buySushi(props.sushi)} />
+          
         }
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+      {props.sushi.name} - ${props.sushi.price}
       </h4>
     </div>
   )
 }
+
+//onClick for plate will remove Sushi from plate, talk to Table and App
+//pass function to sushi, up to App which will tell Table about the state of Sushi. 
 
 export default Sushi
